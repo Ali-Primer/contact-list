@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Add = ({ onAdd, exist }) => {
+export const Add = ({ onAdd }) => {
     const [Name, setName] = useState("")
     const [num, setNum] = useState("")
     const [email, setEmail] = useState("")
@@ -13,7 +13,6 @@ export const Add = ({ onAdd, exist }) => {
     }
     return (
         <div>
-            {exist && <div className="alert">Name repeated before</div>}
             <form className="add_form" onSubmit={handleSubmit}>
                 <input required type="text" value={Name} onChange={({ target }) => setName(target.value)} placeholder="Your name here..." />
                 <input required type="number" value={num} onChange={({ target }) => setNum(target.value)} placeholder="Phone number here..." />

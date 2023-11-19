@@ -6,7 +6,6 @@ import { SearchBar } from "./components/searchBar";
 function App() {
   const [list, setList] = useState([]);
   const [search, setSearch] = useState("");
-  const [existed, setExisted] = useState(false);
 
   const deleteHandle = (deleteId) => {
     const newList = list.filter(({ id }) => id !== deleteId);
@@ -14,28 +13,19 @@ function App() {
   }
 
   const add = ({ Name, num, email }) => {
-    const existedItem = list.find((item) => item.Name.toLowerCase() === Name.toLowerCase());
-    if (existedItem) {
-      setExisted(true)
+    const newItem = {
+      id: list.length + 1,
+      Name,
+      num,
+      email
     }
-    if (existedItem === false) {
-      const newItem = {
-        id: list.length + 1,
-        Name,
-        num,
-        email
-      };
-    
-      setList([...list, newItem]);
+    setList([...list, newItem]);
+  };
 
-    }
-    
-};
-    
   return (
     <div className="main">
       <SearchBar onSearch={(search) => setSearch(search)} />
-      <Add exist={existed} onAdd={add} />
+      <Add onAdd={add} />
       <List onDelete={deleteHandle} toSearch={search} lists={list} />
     </div>
   );
